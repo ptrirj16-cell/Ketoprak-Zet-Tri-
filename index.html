@@ -41,7 +41,7 @@ footer { text-align: center; padding: 16px; color: #999; font-size: 12px; paddin
 <body>
 
 <div class="logo">
-<img src="logo.jpg" alt="Ketoprak Zet Tri">
+<img src="logo.jpg" data-base="logo" alt="Ketoprak Zet Tri">
 </div>
 <div class="tagline">Bumbu Medok, Harga Bersahabat, Rasa Bintang Lima<br>Sarapan Kenyang, Siang Tetap Semangat!</div>
 
@@ -55,7 +55,7 @@ footer { text-align: center; padding: 16px; color: #999; font-size: 12px; paddin
 
 <div class="menu">
 <div class="card">
-<img src="original.jpg">
+<img src="original.jpg" data-base="original">
 <div class="card-body">
 <h3>Ketoprak Original</h3>
 <p>Ketoprak Original Zet-Tri Rp13.000! Ketoprak Betawi asli. Lontong pulen, tahu garing, bihun lembut, toge segar, timun, disiram bumbu kacang medok khas Zet-Tri. Gurih, manis, pedas bisa request. Ditabur bawang goreng & kerupuk renyah. Porsi kenyang, harga kaki lima, rasa bintang lima. Wajib coba!!!!!</p>
@@ -64,7 +64,7 @@ footer { text-align: center; padding: 16px; color: #999; font-size: 12px; paddin
 </div>
 
 <div class="card">
-<img src="telor.jpg">
+<img src="telor.jpg" data-base="telor">
 <div class="card-body">
 <h3>Ketoprak Telur</h3>
 <p>Ketoprak Telur Zet-Tri Rp17.000! Lontong pulen, tahu garing, bihun, toge segar, telur ceplok/dadar/rebus, disiram bumbu kacang medok khas Zet-Tri. Gurih, manis, pedas bisa request. Ditabur bawang goreng & kerupuk renyah. Porsi kenyang, harga bersahabat. Sekali coba, pasti balik lagi! Dijamin nagih!!</p>
@@ -73,7 +73,7 @@ footer { text-align: center; padding: 16px; color: #999; font-size: 12px; paddin
 </div>
 
 <div class="card">
-<img src="indomie.jpg">
+<img src="indomie.jpg" data-base="indomie">
 <div class="card-body">
 <h3>Ketoprak Indomie</h3>
 <p>Ketoprak Indomie Zet-Tri Rp20.000! Perpaduan ketoprak Betawi + Indomie goreng spesial. Lontong pulen, tahu garing, bihun, toge, timun, mie kenyal, disiram bumbu kacang medok khas Zet-Tri. Gurih, manis, pedas bisa request. Ditabur bawang goreng & kerupuk. Porsi jumbo, double kenyang, dijamin puas!!!!</p>
@@ -82,7 +82,7 @@ footer { text-align: center; padding: 16px; color: #999; font-size: 12px; paddin
 </div>
 
 <div class="card">
-<img src="original.jpg">
+<img src="original.jpg" data-base="original">
 <div class="card-body">
 <h3>Ketoprak Menu Custom</h3>
 <p>Bebas request, extra pedas, telor, kerupuk. Level Pedas: Tidak Pedas - Sedang - Pedas - Pedas Jontor. Pesan online bisa request sambal pisah.</p>
@@ -96,7 +96,7 @@ footer { text-align: center; padding: 16px; color: #999; font-size: 12px; paddin
 
 <div class="menu">
 <div class="card">
-<img src="tahu.jpg">
+<img src="tahu.jpg" data-base="tahu">
 <div class="card-body">
 <h3>Tahu Goreng</h3>
 <p>Tahu goreng garing, gurih, isi 5, cocok buat temen ketoprak</p>
@@ -105,7 +105,7 @@ footer { text-align: center; padding: 16px; color: #999; font-size: 12px; paddin
 </div>
 
 <div class="card">
-<img src="telur.jpg">
+<img src="telur.jpg" data-base="telur">
 <div class="card-body">
 <h3>Telor Dadar</h3>
 <p>Telor dadar tebal, lembut, digoreng dadakan. Bisa juga ceplok / rebus.</p>
@@ -180,6 +180,20 @@ footer { text-align: center; padding: 16px; color: #999; font-size: 12px; paddin
 </div>
 
 <footer>© 2026 Ketoprak Zet Tri - Cipayung, Depok</footer>
+
+<script>
+// Otomatis coba .jpg -> .jpeg -> .png -> .JPG kalau file gak ketemu
+document.querySelectorAll('img[data-base]').forEach(function(img){
+  var base = img.getAttribute('data-base');
+  var tries = [base + '.jpg', base + '.jpeg', base + '.png', base + '.JPG', base + '.JPEG'];
+  var i = 0;
+  img.onerror = function(){
+    i++;
+    if(i < tries.length){ img.src = tries[i]; }
+    else { img.onerror = null; }
+  };
+});
+</script>
 
 </body>
 </html>
